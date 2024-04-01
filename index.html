@@ -5,448 +5,57 @@
   <!-- meta data -->
   <meta charset="utf-8">
   <title>名字ライフゲーム</title>
-  <base href="/">
-  <!---->
-
-  <!--
-    base: {
-      href: '/',
-    },
-    meta: [
-      {charset: 'utf-8'},
-      {name: "viewport", content: "width=device-width, initial-scale=1"},
-      {name: "robots", content: "index,follow"},
-      {name: "rating", content: "general"},
-      {name: "google", content: "notranslate"},
-      {name: "referrer", content: "no-referrer"},
-      {name: "format-detection", content: "telephone=no"},
-      {property: "og:type", content: "article"},
-      {name: "twitter:card", content: "summary"},
-      {name: "twitter:dnt", content: "on"},
-      {name: "ICBM", content: "34.5136853, 135.8463216"},
-      {name: "geo.position", content: "34.5136853;135.8463216"},
-      {name: "geo.region", content: "JP"},
-      {name: "geo.placename", content: "Sakurai city, Nara pref., Japan"},
-    ],
-    link: [
-      {rel: "icon", href: "/favicon.ico", sizes: "any"},
-      {rel: "icon", href: "/favicon.svg", type: "image/svg+xml"},
-      {rel: "mask-icon", href: "/favicon.svg", color: "#0a0a0a"},
-      {rel: "apple-touch-icon", href: "/apple-touch-icon.png"},
-      {rel: "manifest", href: "/manifest.webmanifest"},
-      {rel: "preconnect", href: "https://fonts.googleapis.com"},
-      {rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: ""},
-      {rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&family=Vollkorn+SC:wght@400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap"},
-      {rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;600&family=Noto+Serif+JP:wght@500&display=swap&text=%E2%80%A6"},
-    ],
-
-    title: pageTitle,
-    meta: [
-      {name: "description", content: pageDescription},
-      {property: "og:url", content: pagePath},
-      {property: "og:title", content: pageTitle},
-      {property: "og:description", content: pageDescription},
-      {property: "og:image", content: runtimeConfig.public.blogHome + "icon-512.png"},
-      {property: "og:site_name", content: runtimeConfig.public.siteName},
-      //{name: "twitter:site", content: runtimeConfig.public.accountTwitter},
-      //{name: "twitter:creator", content: runtimeConfig.public.accountTwitter},
-    ],
-    link: [
-      {href: runtimeConfig.public.blogHome, rel: "index"},
-      {href: pagePath, rel: "canonical"},
-    ],
-  -->
-
-  <!-- css -->
-  <style>
-    /** reset css */
-    *:not(svg *, symbol *), *::before, *::after{
-      all: unset;
-      display: revert;
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      padding-block: 0;
-      padding-inline: 0;
-      border: 0;
-    }
-
-    a, button{
-      cursor: revert;
-    }
-
-    ol, ul, menu{
-      list-style: none;
-    }
-
-    img{
-      display: block;
-      max-inline-size: 100%;
-      max-block-size: 100%;
-    }
-
-    table{
-      border-collapse: collapse;
-    }
-
-    input, textarea{
-      user-select: auto;
-      -webkit-user-select: auto;
-    }
-
-    textarea{
-      white-space: revert;
-    }
-
-    meter{
-      -webkit-appearance: revert;
-      appearance: revert;
-    }
-
-    :where(pre){
-      all: revert;
-    }
-
-    ::placeholder{
-      color: unset;
-    }
-
-    ::marker{
-      content: initial;
-    }
-
-    :where([hidden]){
-      display: none;
-    }
-
-    :where([contenteditable]:not([contenteditable="false"])){
-      -moz-user-modify: read-write;
-      -webkit-user-modify: read-write;
-      overflow-wrap: break-word;
-      line-break: strict;
-      -webkit-line-break: after-white-space;
-      -webkit-user-select: auto;
-      user-select: auto;
-    }
-
-    :where([draggable="true"]){
-      -webkit-user-drag: element;
-    }
-
-    :where(dialog:modal){
-      all: revert;
-    }
-
-    img, video, canvas{
-      overflow: clip;
-      overflow-clip-margin: content-box;
-    }
-
-
-    /** page css */
-    :root{
-      font-size: 15px;
-      font-family: "Kiwi Maru", serif;
-      font-weight: 500;
-    }
-
-
-    aside#mask{
-      display: none;
-      position: fixed;
-      z-index: 10000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #000c;
-    }
-
-    aside#mask[data-state='visible']{
-      display: block;
-    }
-
-
-    body >main{
-      width: 100%;
-      max-width: 1080px;
-      margin: 0 auto;
-    }
-
-
-    section#table{
-      display: grid;
-      grid-template-columns: 1fr 15rem;
-      gap: 0.75rem 1rem;
-    }
-
-
-    section#table label{
-      display: grid;
-      grid-template-columns: repeat(3, max-content);
-      justify-content: center;
-      align-items: center;
-      gap: 0 0.5rem;
-      margin-bottom: 0.75rem;
-    }
-    section#table label b{
-      display: block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 11rem;
-      height: 1.5rem;
-    }
-
-
-    section#table ol{
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: fit-content;
-    }
-    section#table ol li{
-      display: block;
-      width: 1%;
-      height: 0;
-      padding-bottom: 1%;
-    }
-  </style>
-
-
-  <!-- javascript -->
-  <script>
-
-    /**
-     * myoji-yurai.net上のDevTool上でデータ取得
-     * コンソールログ上で下記コードをコピペして実行します
-     * 出力結果をフォームまたは初期化データにコピペして保存してください
-     */
-    
-    // (d=>{const txt=[];d.querySelectorAll('.post table.simple tbody tr').forEach(tr=>{txt.push(tr.querySelector('td a').innerHTML+"\t"+Math.ceil((tr.querySelector('td:last-of-type').innerHTML.replace(/[^0-9]/g,'')-0)/10000));});console.log(txt.join("\r\n"));})(document);
-
-
-    /**
-     * ページ内の処理
-     */
-    (() => {
-      /** general initialization */
-      let load = () => {
-        // add event listener
-        document.querySelector('button#start').addEventListener('click', start);
-        document.querySelector('button#stop').addEventListener('click', stop);
-        document.querySelector('button#init').addEventListener('click', init);
-      };
-
-
-      /** mask set */
-      let mask_set = () => {
-        document.querySelector('aside#mask').dataset.state = 'visible';
-      };
-
-      /** mask unset */
-      let mask_unset = () => {
-        document.querySelector('aside#mask').dataset.state = 'hidden';
-      };
-
-
-      /** onClick: button#start */
-      let start = () => {};
-
-      /** onClick: button#stop */
-      let stop = () => {};
-
-
-      /** onClick: button#init */
-      let init = () => {
-        mask_set();
-
-        setTimeout(() => {
-          // check init-data
-          let txa_data = document.querySelector('section#data textarea').value;
-          if(!txa_data){
-            mask_unset();
-            alert('ERR_100: データが存在しません');
-            return;
-          }
-
-          let def_data = txa_data.replace(/\r\n/g, '\n').replace(/\r/g, "\n").replace(/\n+/g, "\n").replace(/(^\n|\n$)/, '');
-          if(!def_data){
-            mask_unset();
-            alert('ERR_101: データが存在しません');
-            return;
-          }
-
-
-          // parse init-data
-          def_data = def_data.split("\n");
-          for(let i = 0, l = def_data.length; i < l; i ++){
-            def_data[i] = def_data[i].split("\t");
-
-            if(def_data[i].length !== 2){
-              mask_unset();
-              alert('ERR_110: データの書式が正しくありません');
-              return;
-            }
-            if(def_data[i][0] === ''){
-              mask_unset();
-              alert('ERR_111: データの名字が空欄です');
-              return;
-            }
-            if(def_data[i][1] === ''){
-              mask_unset();
-              alert('ERR_112: データの件数が空欄です');
-              return;
-            }
-            if(/[^0-9]/.test(def_data[i][1])){
-              mask_unset();
-              alert('ERR_113: データの件数に数字以外の文字が含まれています');
-              return;
-            }
-  
-            def_data[i][0] = def_data[i][0] + ''; // name
-            def_data[i][1] = ~~(def_data[i][1]); // count
-            def_data[i][2] = ~~(Math.random() * 1000000000); // sort-order
-            def_data[i][3] = i; // id
-          }
-
-
-          // set index-data
-          let index_data = [];
-          let index_max = 100;
-          for(i = 0, l = def_data.length; i < l; i ++){
-            if(index_max < def_data[i][1]){
-              index_max = def_data[i][1];
-            }
-
-            index_data.push({
-              id: def_data[i][3],
-              name: def_data[i][0],
-              count: def_data[i][1],
-              color:
-                '#'
-                + (~~(Math.random() * 255)).toString(16).padStart(4, "0").substring(2, 4)
-                + (~~(Math.random() * 255)).toString(16).padStart(4, "0").substring(2, 4)
-                + (~~(Math.random() * 255)).toString(16).padStart(4, "0").substring(2, 4)
-            });
-          }
-
-
-          // set list-data
-          let node_data = [];
-          for(i = 0, l = def_data.length; i < l; i ++){
-            for(let j = 0, m = def_data[i][1]; j < m; j ++){
-              node_data.push({
-                id: def_data[i][3],
-                name: def_data[i][0],
-                value: ~~(Math.random() * 1000000000)
-              });
-            }
-          }
-          node_data.sort((a, b) => a.value - b.value);
-
-
-          // clear dom
-          if(document.querySelectorAll('section#table ol li').length !== 0){
-            document.querySelectorAll('section#table ol li').forEach(li => {
-              li.remove();
-            });
-          }
-          if(document.querySelectorAll('section#table ul li').length !== 0){
-            document.querySelectorAll('section#table ul li').forEach(li => {
-              li.remove();
-            });
-          }
-
-
-          // set dom: table
-          let parent_node = document.querySelector('section#table ol');
-
-          node_data.forEach(dat => {
-            let child_node = document.createElement('li');
-
-            parent_node.appendChild(child_node);
-
-            child_node.setAttribute('data-id', dat.id);
-
-            let tmp_index = index_data.filter(arr => arr.id === dat.id);
-            if(tmp_index.length === 0){
-              child_node.style.backgroundColor = '#0000';
-            }else{
-              child_node.style.backgroundColor = tmp_index[0].color;
-            }
-
-            child_node = null;
-          });
-
-          parent_node = null;
-
-
-          // set dom: generation
-          document.querySelector('b#generation').innerHTML = '1';
-
-          // set dom: index
-          parent_node = document.querySelector('section#table ul');
-          parent_node.setAttribute('data-max', index_max);
-
-          index_data.forEach(dat => {
-            let child_node = document.createElement('li');
-            let color_node = document.createElement('data');
-            let name_node = document.createElement('span');
-            let name_text = document.createTextNode(dat.name);
-            let count_node = document.createElement('small');
-            let count_text = document.createTextNode(dat.count);
-            let bar_node = document.createElement('meter');
-            let bar_value = ~~(dat.count / index_max * 100);
-
-            parent_node.appendChild(child_node);
-            child_node.appendChild(color_node);
-            child_node.appendChild(name_node);
-            name_node.appendChild(name_text);
-            child_node.appendChild(count_node);
-            count_node.appendChild(count_text);
-            child_node.appendChild(bar_node);
-
-            child_node.setAttribute('data-id', dat.id);
-            color_node.style.backgroundColor = dat.color;
-            bar_node.setAttribute('value', bar_value);
-            bar_node.setAttribute('min', 0);
-            bar_node.setAttribute('max', 100);
-            bar_node.setAttribute('low', 0);
-            bar_node.setAttribute('high', 50);
-            //bar_node.setAttribute('optimum', 50);
-
-            child_node = color_node = name_node = name_text = count_node = count_text = bar_node = null;
-          });
-
-          parent_node = null;
-
-          mask_unset();
-        }, 10);
-      };
-
-      /** onLoad */
-      document.addEventListener('DOMContentLoaded', load);
-    })();
-
-  </script>
-
+  <meta name="description" content="名字同士にライフゲームをしてもらいました。">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <meta name="rating" content="general">
+  <meta name="google" content="notranslate">
+  <meta name="referrer" content="no-referrer">
+  <meta name="format-detection" content="telephone=no">
+
+  <link rel="index" href="http://localhost/_local/myoji_lifegame">
+  <link rel="canonical" href="http://localhost/_local/myoji_lifegame">
+
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:dnt" content="on">
+  <meta property="og:url" content="http://localhost/_local/myoji_lifegame">
+  <meta property="og:title" content="名字ライフゲーム">
+  <meta property="og:description" content="名字同士にライフゲームをしてもらいました。">
+  <meta property="og:image" content="http://localhost/_local/myoji_lifegame/favicon.png">
+  <meta property="og:site_name" content="">
+  <meta name="twitter:site" content="@hadukinei">
+  <meta name="twitter:creator" content="@hadukinei">
+
+  <meta name="geo.region" content="JP">
+  <meta name="geo.placename" content="Sakurai city, Nara pref., Japan">
+  <meta name="ICBM" content="34.5136853, 135.8463216">
+  <meta name="geo.position" content="34.5136853;135.8463216">
 
   <!-- resource -->
+  <link rel="icon" href="./favicon.ico">
+  <link rel="icon" href="./favicon.png">
+  <link rel="mask-icon" href="./favicon.svg" color="#ffffff">
+  <link rel="apple-touch-icon" href="./favicon.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@500&display=swap" rel="stylesheet"></head>
+  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap&text=%E5%90%8D%E5%AD%97%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B2%E3%83%BC%E3%83%A0" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@500&display=swap&text=0123456789" rel="stylesheet">
+
+  <script src="main.js"></script>
+  <link rel="stylesheet" href="main.css">
+</head>
 
 <body>
   <aside id="mask" data-state="hidden"></aside>
 
-  <main>
+  <main data-state="pause">
     <section id="header">
       <h1>名字ライフゲーム</h1>
-    </section>
 
-    <section id="command">
       <ul>
         <li><button id="start">開始／再開</button></li>
         <li><button id="stop">一時停止</button></li>
@@ -469,9 +78,39 @@
     </section>
 
     <section id="info">
+      <header>このページは何？</header>
+
       <article>
         <div>
           名字でライフゲームさせます<br>
+          最初に「初期化」を押下してください<br>
+        </div>
+
+        <div>
+          <span>「そもそもライフゲームって何なの？」という方は</span>
+          <a href="https://ja.wikipedia.org/wiki/%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B2%E3%83%BC%E3%83%A0" target="_blank" rel="noopener noreferrer external">
+            <em>Wikipedia</em>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg>
+          </a>
+          <span>など参照してみてください</span><br>
+        </div>
+
+        <div>
+          <a href="https://www.asahi.com/" target="_blank" rel="noopener noreferrer external">
+            <em>朝日新聞デジタル</em>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg>
+          </a>
+          <span>に面白い記事があったので、実証実験に作ってみました</span><br>
+          <a href="https://www.asahi.com/articles/ASS3Y3HZ2S3YULFA00BM.html" target="_blank" rel="noopener noreferrer external">
+            <em>500年後みんな「佐藤さん」に 別姓導入しなければ 識者が試算</em>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg>
+          </a><br>
+          <span>いや「ホンマにみんな佐藤さんになるとかあるかいな！」とツッコミを入れるのは簡単ですけども、どうせなら面白い返し方をしたいなと思いまして</span><br>
+        </div>
+
+        <p>右上メニュー</p>
+
+        <div>
           ゲームを開始するには「開始／再開」を押下してください<br>
           ゲームを一時停止するには「一時停止」を押下してください<br>
           一時停止しているゲームを再開するには「開始／再開」を押下してください<br>
@@ -483,6 +122,8 @@
           ページを最初に読み込んだ時には、自動的に初期化処理が実行されます<br>
         </div>
 
+        <p>データのカスタマイズ</p>
+
         <div>
           初期化するデータを変更したい場合、下記のテキストエリアを編集してから「初期化」を押下してください<br>
           データ書式は「名字・タブ文字・人数・改行文字」です<br>
@@ -491,10 +132,35 @@
 
         <div>
           <span>デフォルトデータは</span>
-          <a href="https://myoji-yurai.net/prefectureRanking.htm?prefecture=%E5%85%A8%E5%9B%BD&page=0" target="_blank" rel="noopener noreferrer external">全国名字ランキング</a>
+          <a href="https://myoji-yurai.net/prefectureRanking.htm?prefecture=%E5%85%A8%E5%9B%BD&page=0" target="_blank" rel="noopener noreferrer external">
+            <em>全国名字ランキング</em>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg>
+          </a>
           <span>(2023年度)を加工しています</span><br>
 
-          100位までを取得しており、単位は10,000人で小数点は四捨五入しました<br>
+          500位までを取得しており、単位は10,000人で小数点は四捨五入しました<br>
+        </div>
+
+        <p>内部的な仕組みなど</p>
+
+        <div>
+          １回の処理を「世代」とします<br>
+          １世代では、必ず全てのマス目は、別のランダムなマス目と結婚しようとします<br>
+          マス目が奇数しか残っていない場合は結婚できないものが１つだけ現れますが、独身の方には退場してもらいます<br>
+          悲しい話<br>
+        </div>
+
+        <div>
+          どちらの名字になるかは完全にランダムです<br>
+          結婚して、片方が改姓して、右側の名字リストの人数と順番を更新<br>
+          これが終わると次の世代に進みます<br>
+        </div>
+
+        <div>
+          何回かやってみましたが、意外と佐藤さん残りませんね<br>
+          ランダムだから仕方ないですけども<br>
+          トップ８あたりが盤石な地位を手に入れてからが中々の接戦でとてもよいと思います<br>
+          こういうのは見ているだけで楽しいので大変満足しました<br>
         </div>
       </article>
     </section>
@@ -507,6 +173,8 @@
     </section>
 
     <section id="data">
+      <header>データ</header>
+
       <textarea>佐藤	183
 鈴木	177
 高橋	139
@@ -606,13 +274,416 @@
 野村	19
 松尾	18
 市川	18
-菊地	18</textarea>
+菊地	18
+杉本	18
+古川	18
+島田	18
+大西	18
+水野	18
+桜井	17
+高野	17
+吉川	17
+渡部	17
+山内	16
+飯田	16
+西田	16
+西川	16
+菊池	16
+小松	16
+北村	16
+安田	16
+五十嵐	16
+川口	16
+関	16
+平田	16
+中田	15
+久保田	15
+服部	15
+東	15
+岩田	15
+土屋	15
+福島	15
+川崎	15
+本田	15
+辻	15
+樋口	15
+秋山	15
+永井	15
+田口	15
+山中	15
+中西	15
+吉村	15
+川上	15
+石原	14
+大橋	14
+松岡	14
+馬場	14
+浜田	14
+森本	14
+星野	14
+浅野	14
+矢野	14
+大久保	14
+松下	14
+小池	14
+吉岡	14
+野田	14
+荒木	13
+内藤	13
+大谷	13
+松浦	13
+熊谷	13
+黒田	13
+尾崎	13
+永田	13
+望月	13
+川村	13
+荒井	13
+田辺	13
+松村	13
+堀	13
+早川	13
+大島	13
+平井	13
+栗原	13
+菅野	12
+西山	12
+広瀬	12
+横田	12
+石橋	12
+萩原	12
+岩本	12
+片山	12
+関口	12
+宮田	12
+大石	12
+高山	11
+吉野	11
+本間	11
+須藤	11
+岡崎	11
+小田	11
+伊東	11
+上原	11
+鎌田	11
+篠原	11
+小西	11
+松原	11
+古賀	11
+福井	11
+小泉	11
+大森	11
+成田	11
+奥村	11
+南	11
+内山	11
+川島	11
+沢田	11
+桑原	11
+三宅	11
+片岡	11
+杉浦	11
+富田	11
+岡	11
+八木	10
+奥田	10
+小沢	10
+松永	10
+北川	10
+関根	10
+河合	10
+平山	10
+牧野	10
+白石	10
+今村	10
+寺田	10
+青山	10
+小倉	10
+中尾	10
+渋谷	10
+上村	10
+小野寺	10
+大山	10
+足立	10
+岡村	10
+坂口	10
+天野	10
+多田	10
+佐久間	10
+根本	10
+豊田	10
+田島	9
+飯塚	9
+角田	9
+村山	9
+武藤	9
+白井	9
+西	9
+榎本	9
+竹田	9
+宮下	9
+塚本	9
+神谷	9
+坂田	9
+水谷	9
+児玉	9
+坂井	9
+齋藤	9
+浅井	9
+小原	9
+岡部	9
+森下	9
+神田	9
+小笠原	9
+中井	9
+植田	9
+河村	9
+宮川	9
+稲垣	9
+前川	9
+大川	9
+松崎	9
+長田	9
+飯島	9
+若林	9
+谷	8
+大沢	8
+石塚	8
+安部	8
+堀内	8
+及川	8
+田代	8
+中嶋	8
+江口	8
+山根	8
+中谷	8
+岸本	8
+荒川	8
+本多	8
+西尾	8
+森山	8
+岡野	8
+金井	8
+細川	8
+今野	8
+稲葉	8
+戸田	8
+津田	8
+安達	8
+森川	8
+落合	8
+土井	8
+村松	8
+星	8
+町田	8
+三上	8
+畠山	8
+岩井	8
+長尾	8
+堤	8
+中原	8
+野崎	7
+中沢	7
+金田	7
+米田	7
+松山	7
+杉田	7
+堀田	7
+西野	7
+三好	7
+山岸	7
+佐伯	7
+黒川	7
+西岡	7
+大竹	7
+泉	7
+甲斐	7
+大木	7
+笠原	7
+堀江	7
+岸	7
+川田	7
+徳永	7
+須田	7
+山川	7
+黒木	7
+榊原	7
+古田	7
+梅田	7
+新田	7
+三木	7
+野中	7
+大城	7
+金城	7
+村井	7
+奥山	7
+土田	7
+滝沢	7
+大村	7
+川端	6
+井口	6
+梶原	6
+大場	6
+宮城	6
+比嘉	6
+長島	6
+吉原	6
+宮内	6
+金沢	6
+安井	6
+庄司	6
+大内	6
+茂木	6
+荻野	6
+松島	6
+日高	6
+下田	6
+向井	6
+塚田	6
+石黒	6
+奥野	6
+西本	6
+竹中	6
+広田	6
+嶋田	6
+栗田	6
+藤川	6
+福本	6
+北野	6
+藤野	6
+宇野	6
+川原	6
+丹羽	6
+谷川	6
+小谷	6
+青柳	6
+吉本	6
+竹下	6
+藤岡	6
+竹本	6
+古谷	6
+緒方	6
+平川	6
+藤村	6
+亀井	6
+高島	6
+三輪	6
+篠崎	6
+藤沢	6
+窪田	6
+宮原	6
+根岸	6
+高井	6
+下村	6
+高瀬	6
+山村	5
+川本	5
+小澤	5
+柳沢	5
+横井	5
+吉沢	5
+武井	5
+出口	5
+小森	5
+竹村	5
+長野	5
+宮沢	5
+志村	5
+平松	5
+臼井	5
+福岡	5
+黒沢	5
+溝口	5
+田原	5
+稲田	5
+浅田	5
+筒井	5
+奧村	5
+柳田	5
+永野	5
+大原	5
+瀬戸	5
+冨田	5
+林田	5
+大平	5
+手塚	5
+篠田	5
+入江	5
+北原	5
+福永	5
+富永	5
+矢島	5
+小出	5
+湯浅	5
+鶴田	5
+沼田	5
+堀口	5
+高松	5
+長岡	5
+岩瀬	5
+山岡	5
+大田	5
+石崎	5
+澤田	5
+大槻	5
+石山	5
+池上	5
+堀川	5
+二宮	5
+相馬	5
+柏木	5
+園田	5
+島崎	5
+奧田	5
+平岡	5
+花田	5
+杉原	5
+加納	5
+村瀬	5
+川野	5
+内海	5
+片桐	5
+長沢	5
+倉田	5
+野沢	5
+河原	5
+福原	5
+秋元	5
+松野	5
+西原	5
+越智	5
+笠井	5
+小坂	5
+田畑	5
+北島	5
+渡邊	5
+日野	5
+谷本	5
+吉井	5
+千田	5
+深沢	5
+西沢	5
+相沢	4
+徳田	4
+原口	4
+小柳	4
+米山	4
+細谷	4
+新谷	4
+田上	4
+今泉	4
+浜野	4
+菅	4
+森岡	4</textarea>
     </section>
 
     <section id="footer">
       <h2>
         <span>&copy;2024</span>
-        <a href="https://misskey.io/@nei_haduki" target="_blank" rel="noopener noreferrer external">nei_haduki</a>
+        <a href="https://misskey.io/@nei_haduki" target="_blank" rel="noopener noreferrer external">
+          <em>葉月 寧</em>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg>
+        </a>
       </h2>
       <p>version 1.0.0-20000101_0000</p>
     </section>
