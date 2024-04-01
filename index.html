@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <!-- meta data -->
+  <meta charset="utf-8">
+  <title>名字ライフゲーム</title>
+  <base href="/">
+  <!---->
+
+  <!--
+    base: {
+      href: '/',
+    },
+    meta: [
+      {charset: 'utf-8'},
+      {name: "viewport", content: "width=device-width, initial-scale=1"},
+      {name: "robots", content: "index,follow"},
+      {name: "rating", content: "general"},
+      {name: "google", content: "notranslate"},
+      {name: "referrer", content: "no-referrer"},
+      {name: "format-detection", content: "telephone=no"},
+      {property: "og:type", content: "article"},
+      {name: "twitter:card", content: "summary"},
+      {name: "twitter:dnt", content: "on"},
+      {name: "ICBM", content: "34.5136853, 135.8463216"},
+      {name: "geo.position", content: "34.5136853;135.8463216"},
+      {name: "geo.region", content: "JP"},
+      {name: "geo.placename", content: "Sakurai city, Nara pref., Japan"},
+    ],
+    link: [
+      {rel: "icon", href: "/favicon.ico", sizes: "any"},
+      {rel: "icon", href: "/favicon.svg", type: "image/svg+xml"},
+      {rel: "mask-icon", href: "/favicon.svg", color: "#0a0a0a"},
+      {rel: "apple-touch-icon", href: "/apple-touch-icon.png"},
+      {rel: "manifest", href: "/manifest.webmanifest"},
+      {rel: "preconnect", href: "https://fonts.googleapis.com"},
+      {rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: ""},
+      {rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&family=Vollkorn+SC:wght@400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap"},
+      {rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;600&family=Noto+Serif+JP:wght@500&display=swap&text=%E2%80%A6"},
+    ],
+
+    title: pageTitle,
+    meta: [
+      {name: "description", content: pageDescription},
+      {property: "og:url", content: pagePath},
+      {property: "og:title", content: pageTitle},
+      {property: "og:description", content: pageDescription},
+      {property: "og:image", content: runtimeConfig.public.blogHome + "icon-512.png"},
+      {property: "og:site_name", content: runtimeConfig.public.siteName},
+      //{name: "twitter:site", content: runtimeConfig.public.accountTwitter},
+      //{name: "twitter:creator", content: runtimeConfig.public.accountTwitter},
+    ],
+    link: [
+      {href: runtimeConfig.public.blogHome, rel: "index"},
+      {href: pagePath, rel: "canonical"},
+    ],
+  -->
+
+  <!-- css -->
+  <style>
+    /** reset css */
+    *:not(svg *, symbol *), *::before, *::after{
+      all: unset;
+      display: revert;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      padding-block: 0;
+      padding-inline: 0;
+      border: 0;
+    }
+
+    a, button{
+      cursor: revert;
+    }
+
+    ol, ul, menu{
+      list-style: none;
+    }
+
+    img{
+      display: block;
+      max-inline-size: 100%;
+      max-block-size: 100%;
+    }
+
+    table{
+      border-collapse: collapse;
+    }
+
+    input, textarea{
+      user-select: auto;
+      -webkit-user-select: auto;
+    }
+
+    textarea{
+      white-space: revert;
+    }
+
+    meter{
+      -webkit-appearance: revert;
+      appearance: revert;
+    }
+
+    :where(pre){
+      all: revert;
+    }
+
+    ::placeholder{
+      color: unset;
+    }
+
+    ::marker{
+      content: initial;
+    }
+
+    :where([hidden]){
+      display: none;
+    }
+
+    :where([contenteditable]:not([contenteditable="false"])){
+      -moz-user-modify: read-write;
+      -webkit-user-modify: read-write;
+      overflow-wrap: break-word;
+      line-break: strict;
+      -webkit-line-break: after-white-space;
+      -webkit-user-select: auto;
+      user-select: auto;
+    }
+
+    :where([draggable="true"]){
+      -webkit-user-drag: element;
+    }
+
+    :where(dialog:modal){
+      all: revert;
+    }
+
+    img, video, canvas{
+      overflow: clip;
+      overflow-clip-margin: content-box;
+    }
+
+
+    /** page css */
+    :root{
+      font-size: 15px;
+      font-family: "Kiwi Maru", serif;
+      font-weight: 500;
+    }
+
+
+    aside#mask{
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000c;
+    }
+
+    aside#mask[data-state='visible']{
+      display: block;
+    }
+
+
+    body >main{
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+
+    section#table{
+      display: grid;
+      grid-template-columns: 1fr 15rem;
+      gap: 0.75rem 1rem;
+    }
+
+
+    section#table label{
+      display: grid;
+      grid-template-columns: repeat(3, max-content);
+      justify-content: center;
+      align-items: center;
+      gap: 0 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    section#table label b{
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 11rem;
+      height: 1.5rem;
+    }
+
+
+    section#table ol{
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: fit-content;
+    }
+    section#table ol li{
+      display: block;
+      width: 1%;
+      height: 0;
+      padding-bottom: 1%;
+    }
+  </style>
+
+
+  <!-- javascript -->
+  <script>
+
+    /**
+     * myoji-yurai.net上のDevTool上でデータ取得
+     * コンソールログ上で下記コードをコピペして実行します
+     * 出力結果をフォームまたは初期化データにコピペして保存してください
+     */
+    
+    // (d=>{const txt=[];d.querySelectorAll('.post table.simple tbody tr').forEach(tr=>{txt.push(tr.querySelector('td a').innerHTML+"\t"+Math.ceil((tr.querySelector('td:last-of-type').innerHTML.replace(/[^0-9]/g,'')-0)/10000));});console.log(txt.join("\r\n"));})(document);
+
+
+    /**
+     * ページ内の処理
+     */
+    (() => {
+      /** general initialization */
+      let load = () => {
+        // add event listener
+        document.querySelector('button#start').addEventListener('click', start);
+        document.querySelector('button#stop').addEventListener('click', stop);
+        document.querySelector('button#init').addEventListener('click', init);
+      };
+
+
+      /** mask set */
+      let mask_set = () => {
+        document.querySelector('aside#mask').dataset.state = 'visible';
+      };
+
+      /** mask unset */
+      let mask_unset = () => {
+        document.querySelector('aside#mask').dataset.state = 'hidden';
+      };
+
+
+      /** onClick: button#start */
+      let start = () => {};
+
+      /** onClick: button#stop */
+      let stop = () => {};
+
+
+      /** onClick: button#init */
+      let init = () => {
+        mask_set();
+
+        setTimeout(() => {
+          // check init-data
+          let txa_data = document.querySelector('section#data textarea').value;
+          if(!txa_data){
+            mask_unset();
+            alert('ERR_100: データが存在しません');
+            return;
+          }
+
+          let def_data = txa_data.replace(/\r\n/g, '\n').replace(/\r/g, "\n").replace(/\n+/g, "\n").replace(/(^\n|\n$)/, '');
+          if(!def_data){
+            mask_unset();
+            alert('ERR_101: データが存在しません');
+            return;
+          }
+
+
+          // parse init-data
+          def_data = def_data.split("\n");
+          for(let i = 0, l = def_data.length; i < l; i ++){
+            def_data[i] = def_data[i].split("\t");
+
+            if(def_data[i].length !== 2){
+              mask_unset();
+              alert('ERR_110: データの書式が正しくありません');
+              return;
+            }
+            if(def_data[i][0] === ''){
+              mask_unset();
+              alert('ERR_111: データの名字が空欄です');
+              return;
+            }
+            if(def_data[i][1] === ''){
+              mask_unset();
+              alert('ERR_112: データの件数が空欄です');
+              return;
+            }
+            if(/[^0-9]/.test(def_data[i][1])){
+              mask_unset();
+              alert('ERR_113: データの件数に数字以外の文字が含まれています');
+              return;
+            }
+  
+            def_data[i][0] = def_data[i][0] + ''; // name
+            def_data[i][1] = ~~(def_data[i][1]); // count
+            def_data[i][2] = ~~(Math.random() * 1000000000); // sort-order
+            def_data[i][3] = i; // id
+          }
+
+
+          // set index-data
+          let index_data = [];
+          let index_max = 100;
+          for(i = 0, l = def_data.length; i < l; i ++){
+            if(index_max < def_data[i][1]){
+              index_max = def_data[i][1];
+            }
+
+            index_data.push({
+              id: def_data[i][3],
+              name: def_data[i][0],
+              count: def_data[i][1],
+              color:
+                '#'
+                + (~~(Math.random() * 255)).toString(16).padStart(4, "0").substring(2, 4)
+                + (~~(Math.random() * 255)).toString(16).padStart(4, "0").substring(2, 4)
+                + (~~(Math.random() * 255)).toString(16).padStart(4, "0").substring(2, 4)
+            });
+          }
+
+
+          // set list-data
+          let node_data = [];
+          for(i = 0, l = def_data.length; i < l; i ++){
+            for(let j = 0, m = def_data[i][1]; j < m; j ++){
+              node_data.push({
+                id: def_data[i][3],
+                name: def_data[i][0],
+                value: ~~(Math.random() * 1000000000)
+              });
+            }
+          }
+          node_data.sort((a, b) => a.value - b.value);
+
+
+          // clear dom
+          if(document.querySelectorAll('section#table ol li').length !== 0){
+            document.querySelectorAll('section#table ol li').forEach(li => {
+              li.remove();
+            });
+          }
+          if(document.querySelectorAll('section#table ul li').length !== 0){
+            document.querySelectorAll('section#table ul li').forEach(li => {
+              li.remove();
+            });
+          }
+
+
+          // set dom: table
+          let parent_node = document.querySelector('section#table ol');
+
+          node_data.forEach(dat => {
+            let child_node = document.createElement('li');
+
+            parent_node.appendChild(child_node);
+
+            child_node.setAttribute('data-id', dat.id);
+
+            let tmp_index = index_data.filter(arr => arr.id === dat.id);
+            if(tmp_index.length === 0){
+              child_node.style.backgroundColor = '#0000';
+            }else{
+              child_node.style.backgroundColor = tmp_index[0].color;
+            }
+
+            child_node = null;
+          });
+
+          parent_node = null;
+
+
+          // set dom: generation
+          document.querySelector('b#generation').innerHTML = '1';
+
+          // set dom: index
+          parent_node = document.querySelector('section#table ul');
+          parent_node.setAttribute('data-max', index_max);
+
+          index_data.forEach(dat => {
+            let child_node = document.createElement('li');
+            let color_node = document.createElement('data');
+            let name_node = document.createElement('span');
+            let name_text = document.createTextNode(dat.name);
+            let count_node = document.createElement('small');
+            let count_text = document.createTextNode(dat.count);
+            let bar_node = document.createElement('meter');
+            let bar_value = ~~(dat.count / index_max * 100);
+
+            parent_node.appendChild(child_node);
+            child_node.appendChild(color_node);
+            child_node.appendChild(name_node);
+            name_node.appendChild(name_text);
+            child_node.appendChild(count_node);
+            count_node.appendChild(count_text);
+            child_node.appendChild(bar_node);
+
+            child_node.setAttribute('data-id', dat.id);
+            color_node.style.backgroundColor = dat.color;
+            bar_node.setAttribute('value', bar_value);
+            bar_node.setAttribute('min', 0);
+            bar_node.setAttribute('max', 100);
+            bar_node.setAttribute('low', 0);
+            bar_node.setAttribute('high', 50);
+            //bar_node.setAttribute('optimum', 50);
+
+            child_node = color_node = name_node = name_text = count_node = count_text = bar_node = null;
+          });
+
+          parent_node = null;
+
+          mask_unset();
+        }, 10);
+      };
+
+      /** onLoad */
+      document.addEventListener('DOMContentLoaded', load);
+    })();
+
+  </script>
+
+
+  <!-- resource -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@500&display=swap" rel="stylesheet"></head>
+
+<body>
+  <aside id="mask" data-state="hidden"></aside>
+
+  <main>
+    <section id="header">
+      <h1>名字ライフゲーム</h1>
+    </section>
+
+    <section id="command">
+      <ul>
+        <li><button id="start">開始／再開</button></li>
+        <li><button id="stop">一時停止</button></li>
+        <li><button id="init">初期化</button></li>
+      </ul>
+    </section>
+
+    <section id="table">
+      <ol></ol>
+
+      <div>
+        <label>
+          <span>第</span>
+          <b id="generation">1</b>
+          <span>世代</span>
+        </label>
+
+        <ul></ul>
+      </div>
+    </section>
+
+    <section id="info">
+      <article>
+        <div>
+          名字でライフゲームさせます<br>
+          ゲームを開始するには「開始／再開」を押下してください<br>
+          ゲームを一時停止するには「一時停止」を押下してください<br>
+          一時停止しているゲームを再開するには「開始／再開」を押下してください<br>
+        </div>
+
+        <div>
+          ゲームが終了すると、自動的に一時停止状態になります<br>
+          一時停止状態で「初期化」を押下すると、ランダムに名字を再配置しますので完了したら「開始／再開」を押下してください<br>
+          ページを最初に読み込んだ時には、自動的に初期化処理が実行されます<br>
+        </div>
+
+        <div>
+          初期化するデータを変更したい場合、下記のテキストエリアを編集してから「初期化」を押下してください<br>
+          データ書式は「名字・タブ文字・人数・改行文字」です<br>
+          改行文字はCRLF・CRのみ・LFのみの全てに対応しています<br>
+        </div>
+
+        <div>
+          <span>デフォルトデータは</span>
+          <a href="https://myoji-yurai.net/prefectureRanking.htm?prefecture=%E5%85%A8%E5%9B%BD&page=0" target="_blank" rel="noopener noreferrer external">全国名字ランキング</a>
+          <span>(2023年度)を加工しています</span><br>
+
+          100位までを取得しており、単位は10,000人で小数点は四捨五入しました<br>
+        </div>
+      </article>
+    </section>
+
+    <section id="revision">
+      <header>更新履歴</header>
+      <ul>
+        <li>version 1.0.0: 公開</li>
+      </ul>
+    </section>
+
+    <section id="data">
+      <textarea>佐藤	183
+鈴木	177
+高橋	139
+田中	132
+伊藤	106
+渡辺	105
+山本	103
+中村	103
+小林	101
+加藤	88
+吉田	82
+山田	80
+佐々木	66
+山口	64
+松本	62
+井上	61
+木村	57
+林	54
+斎藤	54
+清水	53
+山崎	48
+森	46
+池田	45
+橋本	44
+阿部	44
+石川	42
+山下	41
+中島	40
+石井	40
+小川	39
+前田	38
+岡田	38
+長谷川	37
+藤田	37
+後藤	37
+近藤	37
+村上	35
+遠藤	33
+青木	33
+坂本	32
+斉藤	32
+福田	31
+太田	31
+西村	31
+藤井	31
+金子	30
+岡本	29
+藤原	29
+中野	29
+三浦	29
+原田	29
+中川	29
+松田	29
+竹内	29
+小野	28
+田村	28
+中山	27
+和田	27
+石田	26
+森田	26
+上田	25
+原	25
+内田	25
+柴田	24
+酒井	24
+宮崎	24
+横山	24
+高木	23
+安藤	23
+宮本	23
+大野	22
+小島	22
+谷口	21
+今井	21
+工藤	21
+高田	21
+増田	21
+丸山	21
+杉山	21
+村田	21
+大塚	21
+新井	21
+小山	20
+平野	20
+藤本	20
+河野	20
+上野	20
+野口	20
+武田	20
+松井	19
+千葉	19
+岩崎	19
+菅原	19
+木下	19
+久保	19
+佐野	19
+野村	19
+松尾	18
+市川	18
+菊地	18</textarea>
+    </section>
+
+    <section id="footer">
+      <h2>
+        <span>&copy;2024</span>
+        <a href="https://misskey.io/@nei_haduki" target="_blank" rel="noopener noreferrer external">nei_haduki</a>
+      </h2>
+      <p>version 1.0.0-20000101_0000</p>
+    </section>
+  </main>
+</body>
+
+</html>
