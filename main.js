@@ -81,6 +81,11 @@
 
         logging(logger.SUVIVOR, id, name);
 
+        document.querySelectorAll('#table dl dd[data-mode="5"]:nth-of-type(n+4)')
+        .forEach(dd => {
+          let text = dd.innerHTML.replace(' 家が断絶', '家');
+        });
+
         document.querySelector('main').dataset.state = 'pause';
         mask_unset();
         return;
@@ -216,6 +221,31 @@
         idx.style.order = (max - (idx.dataset.tmpcnt - 0)) + '';
         idx.removeAttribute('data-tmpcnt');
       });
+
+      // remove empty indexes
+      let parent_indexes = document.querySelector('section#table ul');
+
+      document.querySelectorAll('#table ul li')
+      .forEach(idx => {
+        if(idx.querySelector('small').innerHTML - 0 === 0){
+          idx.removeChild(idx.querySelector('data'));
+          idx.removeChild(idx.querySelector('span'));
+          idx.removeChild(idx.querySelector('small'));
+          idx.removeChild(idx.querySelector('meter'));
+          parent_indexes.removeChild(idx);
+        }
+      });
+
+      parent_indexes = null;
+
+      // reduce old notices
+      parent_indexes = document.querySelector('section#table dl');
+
+      for(i = document.querySelectorAll('section#table dd[data-mode="3"]').length - 20; i > 0; i --){
+        parent_indexes.removeChild(Array.from(parent_indexes.querySelectorAll('dd[data-mode="3"]')).pop());
+      }
+
+      parent_indexes = null;
 
       // increase generation
       let gen = document.querySelector('#generation').innerHTML - 0;

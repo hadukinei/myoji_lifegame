@@ -87,6 +87,7 @@ img, video, canvas{
   --red: #940000;
   --black: #1c1917;
   --white: #e7e5e4;
+  --transparent_white: #e7e5e400;
   --brown: #674136;
   --blue: #284d5a;
   --pure_white: #fff;
@@ -143,6 +144,8 @@ small rt{
 
 
 aside#mask{
+  justify-content: center;
+  align-items: center;
   display: none;
   position: fixed;
   z-index: 10000;
@@ -150,11 +153,46 @@ aside#mask{
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: #0004;
+  background: #0008 no-repeat;
 }
-
 aside#mask[data-state='visible']{
-  display: block;
+  display: flex;
+}
+aside#mask div{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  width: 120px;
+  height: 120px;
+}
+aside#mask p{
+  background-color: var(--white);
+}
+aside#mask p:nth-of-type(8),
+aside#mask p:nth-of-type(14),
+aside#mask p:nth-of-type(15),
+aside#mask p:nth-of-type(28){
+  background-color: #284c4b;
+}
+aside#mask p:nth-of-type(9),
+aside#mask p:nth-of-type(10),
+aside#mask p:nth-of-type(20),
+aside#mask p:nth-of-type(29){
+  background-color: #f0e6a0;
+}
+aside#mask p:nth-of-type(11),
+aside#mask p:nth-of-type(21),
+aside#mask p:nth-of-type(22){
+  background-color: #f75d09;
+}
+aside#mask p:nth-of-type(16),
+aside#mask p:nth-of-type(27){
+  background-color: #61d38e;
+}
+aside#mask p:nth-of-type(17),
+aside#mask p:nth-of-type(23),
+aside#mask p:nth-of-type(26){
+  background-color: #2b95b1;
 }
 
 
