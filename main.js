@@ -81,10 +81,30 @@
 
         logging(logger.SUVIVOR, id, name);
 
+        /*
         document.querySelectorAll('#table dl dd[data-mode="5"]:nth-of-type(n+4)')
         .forEach(dd => {
-          let text = dd.innerHTML.replace(' 家が断絶', '家');
+          dd.innerHTML = dd.innerHTML.replace(' 家が断絶', '家');
         });
+        */
+        if(!document.querySelectorAll('#table dl dd[data-mode="3"]').length){
+          document.querySelectorAll('#table dl dd[data-mode="5"]:not(first-of-type)')
+          .forEach(dd => {
+            dd.innerHTML = dd.innerHTML.replace(' 家が断絶', '家');
+          });
+        }else{
+          let cnt = 0;
+          for(let i = 0, e = document.querySelectorAll('#table dl dd'), l = e.length; i < l; i ++){
+            if(e[i] === Array.from(document.querySelectorAll('#table dl dd[data-mode="3"]')).pop()){
+              break;
+            }
+            cnt ++;
+          }
+          document.querySelectorAll('#table dd:nth-of-type(n + ' + (cnt + 3) + ')')
+          .forEach(dd => {
+            dd.innerHTML = dd.innerHTML.replace(' 家が断絶', '家');
+          });
+        }
 
         document.querySelector('main').dataset.state = 'pause';
         mask_unset();
