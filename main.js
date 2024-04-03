@@ -1,15 +1,3 @@
-/**
- * myoji-yurai.net上のDevTool上でデータ取得
- * コンソールログ上で下記コードをコピペして実行します
- * 出力結果をフォームまたは初期化データにコピペして保存してください
- */
-
-// (d=>{const txt=[];d.querySelectorAll('.post table.simple tbody tr').forEach(tr=>{txt.push(tr.querySelector('td a').innerHTML+"\t"+Math.ceil((tr.querySelector('td:last-of-type').innerHTML.replace(/[^0-9]/g,'')-0)/10000));});console.log(txt.join("\r\n"));})(document);
-
-
-/**
- * ページ内の処理
- */
 (() => {
   /** general initialization */
   let load = () => {
@@ -17,6 +5,13 @@
     document.querySelector('button#start').addEventListener('click', start);
     document.querySelector('button#stop').addEventListener('click', stop);
     document.querySelector('button#init').addEventListener('click', init);
+
+    // append large file-size resource
+    let parent = document.querySelector('head');
+    let child = document.createElement('link');
+    parent.appendChild(child);
+    child.rel = 'stylesheet';
+    child.href = 'https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@500&display=swap';
   };
 
 
@@ -31,13 +26,61 @@
   };
 
 
+  /** logger */
+  const logger = {
+    SUVIVOR: 1,
+    ALONE: 2,
+    BIRTH: 3,
+    DEAD: 4,
+    EXTINCT: 5
+  };
+
+  let logging = (mode, id, name) => {
+    let node = document.createElement('dd'), text;
+    let gen = document.querySelector('#generation').innerHTML;
+
+    switch(mode){
+      case logger.SUVIVOR:
+        text = document.createTextNode('【決着】'+ name + ' 家が第 ' + gen + ' 世代で名字を統一しました');
+      break;
+      case logger.BIRTH:
+        text = document.createTextNode('['+ gen + '] ' + name + ' さん出産を報告');
+      break;
+      case logger.EXTINCT:
+        text = document.createTextNode('['+ gen + '] ' + name + ' 家が断絶');
+      break;
+      case logger.ALONE:
+        //text = document.createTextNode('['+ gen + '] ' + name + ' 家で孤独死か');
+      //break;
+      case logger.DEAD:
+        //text = document.createTextNode('['+ gen + '] ' + name + ' 家で死者発生');
+      //break;
+      default:
+        node = null;
+      return;
+    }
+
+    node.appendChild(text);
+    node.dataset.id = id;
+    node.dataset.mode = mode;
+
+    document.querySelector('section#table dl').insertBefore(node, document.querySelector('section#table dl').firstChild);
+    node = null;
+  };
+
+
   /** onClick: button#start */
   let start = () => {
     mask_set();
 
     setTimeout(() => {
       // set state to playing/pause
-      if(!document.querySelectorAll('section#table ol li').length){
+      if(Array.from((new Map(Array.from(document.querySelectorAll('section#table ol li')).map(li=>[li.dataset.id,0])))).length < 2){
+        let id = document.querySelector('section#table ol li').dataset.id;
+        let name = document.querySelector('#table ul li[data-id="' + id + '"] span').innerHTML;
+
+        logging(logger.SUVIVOR, id, name);
+
         document.querySelector('main').dataset.state = 'pause';
         mask_unset();
         return;
@@ -51,6 +94,11 @@
 
       // if there are no marriable one, drop out one
       if(document.querySelectorAll('section#table ol li').length % 2 === 1){
+        let id = document.querySelector('section#table ol li:last-of-type').dataset.id;
+        let name = document.querySelector('#table ul li[data-id="' + id + '"] span').innerHTML;
+
+        logging(logger.ALONE, id, name);
+
         document.querySelector('section#table ol').removeChild(
           document.querySelector('section#table ol li:last-of-type')
         );
@@ -63,6 +111,9 @@
       .forEach(node => {
         nodes.push(node);
       });
+
+      let children = [];
+      let deadmen = [];
 
       for(let i = 0, l = nodes.length; i < l; i += 2){
         // decide family-name by random
@@ -84,12 +135,70 @@
           nodes[i + 1].dataset.id = id;
           nodes[i + 1].style.backgroundColor = color;
         }
+
+        // birth new child
+        if(Math.random() * 100 <= 0.0315){
+          children.push({
+            id: id,
+            color: color
+          });
+        }
+
+        // rest in peace
+        if(Math.random() * 100 <= 0.129){
+          deadmen.push({
+            elm: nodes[i],
+            id: id
+          });
+        }
+        if(Math.random() * 100 <= 0.129){
+          deadmen.push({
+            elm: nodes[i + 1],
+            id: id
+          });
+        }
       }
 
-      nodes = null;
+      // push new children into dom
+      children.forEach(c => {
+        let li = document.createElement('li');
+        li.dataset.id = c.id;
+        li.style.backgroundColor = c.color;
+        nodes.push(li);
+
+        document.querySelector('section#table ol').appendChild(li);
+
+        let name = document.querySelector('#table ul li[data-id="' + c.id + '"] span').innerHTML;
+        logging(logger.BIRTH, c.id, name);
+
+        li = null;
+      });
+
+      // shift dead men/women from dom
+      deadmen.forEach(c => {
+        nodes.splice(1);
+
+        document.querySelector('section#table ol').removeChild(c.elm);
+        c.elm = null;
+
+        let name = document.querySelector('#table ul li[data-id="' + c.id + '"] span').innerHTML;
+        logging(logger.DEAD, c.id, name);
+
+        li = null;
+      });
+
+      // check extinct families
+      let liveFamilyId_table = Array.from(new Map(Array.from(document.querySelectorAll('section#table ol li')).map(li=>[li.dataset.id,0])).keys()).sort();
+      let lifeFamilyId_index = Array.from(document.querySelectorAll('section#table ul li')).filter(li=>li.querySelector('small').innerHTML!=='0').map(li=>li.dataset.id).sort();
+      lifeFamilyId_index.filter(id => !liveFamilyId_table.includes(id)).forEach(id => {
+        let name = document.querySelector('#table ul li[data-id="' + id + '"] span').innerHTML;
+        logging(logger.EXTINCT, id, name);
+      });
 
       // recalc indexes
+      nodes = null;
       let max = 0;
+      let total = 0;
 
       document.querySelectorAll('#table ul li')
       .forEach(idx => {
@@ -97,6 +206,7 @@
         idx.querySelector('small').innerHTML = count + '';
         idx.dataset.tmpcnt = count + '';
         if(count > max) max = count;
+        total += count;
       });
 
       document.querySelectorAll('#table ul li')
@@ -111,7 +221,9 @@
       let gen = document.querySelector('#generation').innerHTML - 0;
       document.querySelector('#generation').innerHTML = gen + 1 + '';
 
-      // gameset
+      // update population
+      document.querySelector('#population').innerHTML = total + '';
+
       // reserve next generation
       if(document.querySelector('main').dataset.state === 'playing'){
         setTimeout(() => {
@@ -180,21 +292,20 @@
 
         def_data[i][0] = def_data[i][0] + ''; // name
         def_data[i][1] = ~~(def_data[i][1]); // count
-        def_data[i][2] = ~~(Math.random() * 1000000000); // sort-order
-        def_data[i][3] = i; // id
+        def_data[i][2] = i; // id
       }
 
 
       // set index-data
       let index_data = [];
-      let index_max = 100;
+      let index_max = 0;
       for(i = 0, l = def_data.length; i < l; i ++){
         if(index_max < def_data[i][1]){
           index_max = def_data[i][1];
         }
 
         index_data.push({
-          id: def_data[i][3],
+          id: def_data[i][2],
           name: def_data[i][0],
           count: def_data[i][1],
           color:
@@ -211,9 +322,9 @@
       for(i = 0, l = def_data.length; i < l; i ++){
         for(let j = 0, m = def_data[i][1]; j < m; j ++){
           node_data.push({
-            id: def_data[i][3],
+            id: def_data[i][2],
             name: def_data[i][0],
-            value: ~~(Math.random() * 1000000000)
+            value: ~~(Math.random() * 1000000000) // sort-order
           });
         }
       }
@@ -223,12 +334,17 @@
       // clear dom
       if(document.querySelectorAll('section#table ol li').length !== 0){
         document.querySelectorAll('section#table ol li').forEach(li => {
-          li.remove();
+          li.parentNode.removeChild(li);
+        });
+      }
+      if(document.querySelectorAll('section#table dl dd').length !== 0){
+        document.querySelectorAll('section#table dl dd').forEach(dd => {
+          dd.parentNode.removeChild(dd);
         });
       }
       if(document.querySelectorAll('section#table ul li').length !== 0){
         document.querySelectorAll('section#table ul li').forEach(li => {
-          li.remove();
+          li.parentNode.removeChild(li);
         });
       }
 
@@ -253,9 +369,6 @@
 
       parent_node = null;
 
-
-      // set dom: generation
-      document.querySelector('b#generation').innerHTML = '1';
 
       // set dom: index
       parent_node = document.querySelector('section#table ul');
@@ -291,6 +404,18 @@
       });
 
       parent_node = null;
+
+      // set dom: generation
+      document.querySelector('b#generation').innerHTML = '1';
+
+      // set dom: population
+      let total = 0;
+      document.querySelectorAll('#table ul li')
+      .forEach(idx => {
+        let count = document.querySelectorAll('section#table ol li[data-id="' + idx.dataset.id + '"]').length;
+        total += count;
+      });
+      document.querySelector('#population').innerHTML = total + '';
 
       mask_unset();
     }, 10);

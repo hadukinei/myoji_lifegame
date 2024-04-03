@@ -94,23 +94,51 @@ img, video, canvas{
   background-color: var(--white);
   color: var(--black);
   font-size: 15px;
-  font-family: "Kiwi Maru", serif;
+  font-family: "Kiwi Maru", "ヒラギノ丸ゴ ProN", "Hiragino Kaku Gothic Pro", "Meiryo", sans-serif;
   font-weight: 500;
+  text-rendering: optimizeSpeed;
+  -webkit-text-size-adjust: none;
+}
+
+::selection{
+  background-color: #c2988b;
+}
+
+small{
+  font-size: 85%;
 }
 
 a{
   color: var(--red);
-  fill: var(--red);
   text-decoration-line: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 2px;
   text-decoration-color: #94000000;
-  transition: 0.2s color linear, 0.2s fill linear, 0.2s text-decoration-color linear;
+  transition: 0.2s color linear, 0.2s text-decoration-color linear;
 }
 a:hover{
   color: var(--black);
-  fill: var(--black);
   text-decoration-color: var(--red);
+}
+
+img[alt='icon']{
+  display: inline;
+}
+
+rt{
+  position: relative;
+  display: ruby-text;
+  font-size: 50%;
+  font-weight: 600;
+  text-align: center;
+}
+small rt{
+  font-size: 65%;
+}
+@-moz-document url-prefix(){
+  rt{
+    top: 5px;
+  }
 }
 
 
@@ -139,26 +167,51 @@ body >main{
 }
 
 
-/** BP: 768px */
 section#header{
   display: grid;
-  grid-template-columns: 1fr 17rem;
+  grid-template-columns: 1fr 7rem;
   align-items: center;
   gap: 0 1rem;
   height: 6rem;
   padding: 0.75rem 0;
 }
 section#header h1{
+  display: grid;
   color: var(--black);
-  text-shadow: 4px 2px 0 var(--pure_white);
+}
+section#header h1 mark{
   font-size: 3rem;
   font-family: "Train One", sans-serif;
   font-weight: 400;
+  line-height: 1.15;
+  text-shadow: 4px 2px 0 var(--pure_white);
+}
+section#header h1 small{
+  color: #3c3632;
+  font-size: 80%;
+  font-weight: 600;
+}
+section#header h1 small span{
+  display: inline-block;
+  position: relative;
+}
+section#header h1 small i{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1em;
+  background-color: var(--pure_white);
+  transform: translate(0.4rem, 0.5rem);
+}
+section#header h1 small em{
+  position: relative;
 }
 section#header ul{
   display: flex;
   flex-flow: column nowrap;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-end;
   gap: 2px 0;
 }
 section#header ul button{
@@ -176,7 +229,6 @@ section#header ul button:hover{
   background-color: var(--blue);
   color: var(--pure_white);
 }
-
 
 main[data-state="pause"] button#start{
   display: block;
@@ -200,30 +252,6 @@ section#table{
 }
 
 
-section#table label{
-  display: grid;
-  grid-template-columns: repeat(3, max-content);
-  justify-content: center;
-  align-items: center;
-  gap: 0 0.5rem;
-  position: sticky;
-  z-index: 10;
-  top: 0;
-  bottom: 0;
-  margin-bottom: 0.75rem;
-  padding: 0.75rem 0;
-  background-color: var(--brown);
-  color: var(--pure_white);
-}
-section#table label b{
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 13rem;
-  height: 1.5rem;
-}
-
-
 section#table ol{
   display: flex;
   flex-flow: row wrap;
@@ -241,6 +269,81 @@ section#table ol li{
   width: 1%;
   height: 0;
   padding-bottom: 1%;
+}
+
+
+section#table dl{
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.5rem 1rem;
+}
+section#table dl:not(:empty){
+  margin-top: 1.5rem;
+}
+section#table dd{
+  position: relative;
+  padding: 0.2em 0.5em 0.4em;
+  border: 2px #fff0 solid;
+  font-size: 85%;
+}
+section#table dd[data-mode="1"]{
+  padding-left: 0;
+  border-color: var(--red);
+  background-color: var(--pure_white);
+  color: var(--red);
+}
+section#table dd[data-mode="2"],
+section#table dd[data-mode="4"]{
+  border-width: 2px 0 2px 0.5em;
+  border-color: #fff0 #fff0 var(--black) var(--black);
+  border-style: solid;
+}
+section#table dd[data-mode="3"]{
+  border-radius: 0.5em;
+  background-color: #e8ab16;
+  color: #2f2f1b;
+}
+section#table dd[data-mode="3"]::after{
+  content: "\02726";
+  position: absolute;
+  left: -0.3em;
+  top: -0.5em;
+  color: var(--pure_white);
+  text-shadow: 0.75em -0.25em 0 var(--pure_white);
+}
+section#table dd[data-mode="5"]{
+  color: #473f3a;
+  background-color: var(--white);
+}
+
+
+section#table label{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem 0;
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 0;
+  background-color: var(--brown);
+  color: var(--pure_white);
+}
+section#table label em{
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  justify-content: center;
+  align-items: center;
+  gap: 0 0.5rem;
+}
+section#table label b{
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 13rem;
+  height: 1.5rem;
 }
 
 
@@ -300,18 +403,19 @@ section#table ul li meter{
 
 
 section#info{
+  display: grid;
+  gap: 1.5rem 0;
   margin-bottom: 1.5rem;
-  padding: 0.75rem 0.5rem 1.5rem;
+  padding: 1.5rem 0.5rem;
   border: 2px var(--brown) solid;
 }
 section#info header{
-  margin-bottom: 0.75rem;
   padding: 0.75rem 0.5rem;
   background-color: var(--brown);
   color: var(--pure_white);
   font-size: 115%;
 }
-section#info article{
+  section#info article{
   display: flex;
   flex-flow: column nowrap;
   gap: 1.5rem 0;
@@ -323,6 +427,12 @@ section#info article p{
 }
 section#info article p::before{
   content: '\0bb\020';
+}
+section#info article code{
+  display: block;
+  margin: 0.75rem 0;
+  padding: 0.75rem 0.5rem;
+  background-color: var(--pure_white);
 }
 
 
@@ -354,6 +464,9 @@ section#data header{
   background-color: var(--brown);
   color: var(--pure_white);
   font-size: 115%;
+}
+section#data legend{
+  padding: 0 0.5rem 0.75rem;
 }
 section#data textarea{
   display: block;
