@@ -3,7 +3,7 @@ privateモードでリポジトリを作っていく
 
 win/mac/mobileでのクロスブラウザチェックが終わったら公開設定
 
-> GAなどの設定もやっておくこと
+GA/GTAGの設定は後回しで
 
 
 ---
@@ -57,11 +57,28 @@ github.comのリポジトリへ移動
 公開処理は完了
 > ページURLはSettingsのPagesを読み込み直すとURLが表示されている
 
-Branch項目の上
+- Settings
+- Pages
+- Build and deployment
+- `Check`: Source is **Deploy and a branch**
 
-Sourceが**Deploy from a branch**になっている通り、ブランチの更新を行うとページが更新される
-> GitHub Actionsを使う設定にも切り替えられるが、その場合は適宜ご自由に（説明が長くなる）
+初期段階ではブランチの更新によりページが更新される
+> GitHub Actionsを使う設定にも切り替えられるが、その場合は適宜ご自由に（説明が長くなるので）
 
+---
+Gitをコミットしてプッシュすると、デプロイが自動的に始まる
+- Actions
+- All workflows
+- `Check`: All workflows
+
+ここにデプロイの進行具合のステータスが表示されるので、完了したら確認に行く
+
+
+---
+# GA/GTAGの処理
+サイトのURLが確定しないとテストできないので
+
+導入については良き感じに
 
 
 <style>h1{padding: 0.75rem 0 0.85rem; border: 0; background-color: #09090b; color: #f4f4f5; font-size: 1.5rem; line-height: 1;} h1:not(:first-of-type){margin-top: 3rem;} h2{width: fit-content; margin-bottom: 0.75rem; padding: 0 0.5rem; border-radius: 0.5rem; background-color: #0369a1; color: #e0f2fe; font-size: 1.5rem;} code{color: #10b981; font-weight: 700;} strong{color: #f59e0b;} s{color: #6b7280;} em{display: inline-block; padding: 0 0.25rem; border-radius: 0.25rem; background-color: #be123c; color: #ffe4e6; font-style: normal;}</style>
