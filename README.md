@@ -1,7 +1,11 @@
 # 作業手順
 privateモードでリポジトリを作っていく
 
-win/mac/mobileでのクロスブラウザチェックが終わったら公開設定
+win/macでのクロスブラウザチェックが終わったら公開設定
+
+mobile (スマホ)の実機確認も可能ならば終わらせておく
+
+参考：[localhostを使ってスマホで確認する方法](https://qiita.com/mako5656/items/411be80fff4600f241c3)
 
 GA/GTAGの設定は後回しで
 
@@ -66,6 +70,9 @@ github.comのリポジトリへ移動
 > GitHub Actionsを使う設定にも切り替えられるが、その場合は適宜ご自由に（説明が長くなるので）
 
 ---
+mobile (スマホ実機)の動作確認ができなかった場合ここで確認
+
+---
 Gitをコミットしてプッシュすると、デプロイが自動的に始まる
 - Actions
 - All workflows
@@ -81,4 +88,4 @@ Gitをコミットしてプッシュすると、デプロイが自動的に始�
 導入については良き感じに
 
 
-<style>h1{padding: 0.75rem 0 0.85rem; border: 0; background-color: #09090b; color: #f4f4f5; font-size: 1.5rem; line-height: 1;} h1:not(:first-of-type){margin-top: 3rem;} h2{width: fit-content; margin-bottom: 0.75rem; padding: 0 0.5rem; border-radius: 0.5rem; background-color: #0369a1; color: #e0f2fe; font-size: 1.5rem;} code{color: #10b981; font-weight: 700;} strong{color: #f59e0b;} s{color: #6b7280;} em{display: inline-block; padding: 0 0.25rem; border-radius: 0.25rem; background-color: #be123c; color: #ffe4e6; font-style: normal;}</style>
+<link rel="stylesheet" href="readme.css">

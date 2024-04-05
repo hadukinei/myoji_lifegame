@@ -1,0 +1,38 @@
+h1 {
+  padding: 0.75rem 0 0.85rem;
+  border: 0;
+  background-color: #09090b;
+  color: #f4f4f5;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+h1:not(:first-of-type) {
+  margin-top: 3rem;
+}
+h2 {
+  width: fit-content;
+  margin-bottom: 0.75rem;
+  padding: 0 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #0369a1;
+  color: #e0f2fe;
+  font-size: 1.5rem;
+}
+code {
+  color: #10b981;
+  font-weight: 700;
+}
+strong {
+  color: #f59e0b;
+}
+s {
+  color: #6b7280;
+}
+em {
+  display: inline-block;
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
+  background-color: #be123c;
+  color: #ffe4e6;
+  font-style: normal;
+}
