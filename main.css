@@ -511,6 +511,9 @@ section#table dl{
   display: flex;
   flex-flow: row wrap;
   gap: 0.5rem 1rem;
+  overflow-y: scroll;
+  max-height: 200vh;
+  max-height: 200dvh;
 }
 section#table dl:not(:empty){
   margin-top: 1.5rem;
