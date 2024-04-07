@@ -63,7 +63,7 @@ github.comのリポジトリページへ移動
 ## 2b. 注釈
 ```
 - リポジトリのトップフォルダを希望するならそのまま
-- そこのindex.htmlがDirectiveIndexになる
+- そこのindex.htmlがDirectoryIndexになる
 ```
 
 ---
