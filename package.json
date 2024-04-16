@@ -1,0 +1,23 @@
+{
+  "name": "myoji_lifegame",
+  "version": "1.0.0",
+  "description": "privateモードでリポジトリを作成",
+  "main": "main.js",
+  "devDependencies": {
+    "csso-cli": "^4.0.2",
+    "esbuild": "^0.20.2",
+    "npm-run-all": "^4.1.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ts": "run-p build:ts-*",
+    "build:ts-build": "ts-node build.ts",
+    "build:ts-types": "tsc --declaration --emitDeclarationOnly",
+    "build:css": "csso ./src/index.css --output ./dist/index.css --source-map file"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

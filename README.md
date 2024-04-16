@@ -105,4 +105,4 @@ mobile (スマホ実機) の動作確認ができなかった場合
 導入については良き感じに
 
 
-<link rel="stylesheet" href="readme.css">
+<link rel="stylesheet" href="README.css">
