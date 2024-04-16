@@ -117,7 +117,7 @@
 
         logging(logger.ALONE, id, name);
 
-        let cnt = d.querySelector<HTMLElement>('section#table ol')!.getElementsByTagName('li').length;
+        let cnt = d.querySelector<HTMLElement>('section#table ol')!.getElementsByTagName('li').length - 1;
         d.querySelector<HTMLElement>('section#table ol')!.removeChild(
           d.querySelector<HTMLElement>('section#table ol')!.getElementsByTagName('li')[cnt]
         );
