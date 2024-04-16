@@ -524,24 +524,24 @@ section#table dd{
   border: 2px #fff0 solid;
   font-size: 85%;
 }
-section#table dd[data-mode="1"]{
+section#table dd[data-mode="0"]{
   padding-left: 0;
   border-color: var(--red);
   background-color: var(--pure_white);
   color: var(--red);
 }
-section#table dd[data-mode="2"],
-section#table dd[data-mode="4"]{
+section#table dd[data-mode="1"],
+section#table dd[data-mode="3"]{
   border-width: 2px 0 2px 0.5em;
   border-color: #fff0 #fff0 var(--black) var(--black);
   border-style: solid;
 }
-section#table dd[data-mode="3"]{
+section#table dd[data-mode="2"]{
   border-radius: 0.5em;
   background-color: #e8ab16;
   color: #2f2f1b;
 }
-section#table dd[data-mode="3"]::after{
+section#table dd[data-mode="2"]::after{
   content: "\02726";
   position: absolute;
   left: -0.3em;
@@ -549,7 +549,7 @@ section#table dd[data-mode="3"]::after{
   color: var(--pure_white);
   text-shadow: 0.75em -0.25em 0 var(--pure_white);
 }
-section#table dd[data-mode="5"]{
+section#table dd[data-mode="4"]{
   color: #473f3a;
   background-color: var(--white);
 }
