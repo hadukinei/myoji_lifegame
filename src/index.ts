@@ -6,6 +6,16 @@
     d.querySelector('button#stop')?.addEventListener('click', stop);
     d.querySelector('button#init')?.addEventListener('click', init);
 
+    d.querySelector('button#start')?.addEventListener('click', () => {
+      gtag('event', 'click_start');
+    });
+    d.querySelector('button#stop')?.addEventListener('click', () => {
+      gtag('event', 'click_stop');
+    });
+    d.querySelector('button#init')?.addEventListener('click', () => {
+      gtag('event', 'click_init');
+    });
+
     // append large file-size resource
     let parent = d.querySelector('head');
     let child = d.createElement('link');

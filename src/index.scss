@@ -1,86 +1,4 @@
-/** reset css */
-*:not(svg *, symbol *), *::before, *::after{
-  all: unset;
-  display: revert;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  padding-block: 0;
-  padding-inline: 0;
-  border: 0;
-}
-
-a, button{
-  cursor: revert;
-}
-
-ol, ul, menu{
-  list-style: none;
-}
-
-img{
-  display: block;
-  max-inline-size: 100%;
-  max-block-size: 100%;
-}
-
-table{
-  border-collapse: collapse;
-}
-
-input, textarea{
-  user-select: auto;
-  -webkit-user-select: auto;
-}
-
-textarea{
-  white-space: revert;
-}
-
-meter{
-  -webkit-appearance: revert;
-  appearance: revert;
-}
-
-:where(pre){
-  all: revert;
-}
-
-::placeholder{
-  color: unset;
-}
-
-::marker{
-  content: initial;
-}
-
-:where([hidden]){
-  display: none;
-}
-
-:where([contenteditable]:not([contenteditable="false"])){
-  -moz-user-modify: read-write;
-  -webkit-user-modify: read-write;
-  overflow-wrap: break-word;
-  line-break: strict;
-  -webkit-line-break: after-white-space;
-  -webkit-user-select: auto;
-  user-select: auto;
-}
-
-:where([draggable="true"]){
-  -webkit-user-drag: element;
-}
-
-:where(dialog:modal){
-  all: revert;
-}
-
-img, video, canvas{
-  overflow: clip;
-  overflow-clip-margin: content-box;
-}
-
+@forward 'reset.scss';
 
 /** page css */
 :root{
@@ -524,24 +442,24 @@ section#table dd{
   border: 2px #fff0 solid;
   font-size: 85%;
 }
-section#table dd[data-mode="1"]{
+section#table dd[data-mode="0"]{
   padding-left: 0;
   border-color: var(--red);
   background-color: var(--pure_white);
   color: var(--red);
 }
-section#table dd[data-mode="2"],
-section#table dd[data-mode="4"]{
+section#table dd[data-mode="1"],
+section#table dd[data-mode="3"]{
   border-width: 2px 0 2px 0.5em;
   border-color: #fff0 #fff0 var(--black) var(--black);
   border-style: solid;
 }
-section#table dd[data-mode="3"]{
+section#table dd[data-mode="2"]{
   border-radius: 0.5em;
   background-color: #e8ab16;
   color: #2f2f1b;
 }
-section#table dd[data-mode="3"]::after{
+section#table dd[data-mode="2"]::after{
   content: "\02726";
   position: absolute;
   left: -0.3em;
@@ -549,7 +467,7 @@ section#table dd[data-mode="3"]::after{
   color: var(--pure_white);
   text-shadow: 0.75em -0.25em 0 var(--pure_white);
 }
-section#table dd[data-mode="5"]{
+section#table dd[data-mode="4"]{
   color: #473f3a;
   background-color: var(--white);
 }

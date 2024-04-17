@@ -1,0 +1,432 @@
+doctype html
+html(lang="ja")
+
+  // ** head **
+
+  head
+    // Google tag (gtag.js)
+    script(async, src="https://www.googletagmanager.com/gtag/js?id=G-ZBL4E5KJF9")
+    script window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZBL4E5KJF9');
+
+    // Google Tag Manager
+    script (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TTP9DHMZ');
+
+    // meta data
+    -
+      var meta = {
+        title: '名字ライフゲーム',
+        description: '名字同士にライフゲームをしてもらいました。',
+        canonical: 'https://hadukinei.github.io/myoji_lifegame/',
+        sns_author: '@hadukinei',
+      }
+    meta(charset="utf-8")
+    title #{meta.title}
+    meta(name="description", content=meta.description)
+
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(name="robots", content="index,follow")
+    meta(name="rating", content="general")
+    meta(name="google", content="notranslate")
+    meta(name="referrer", content="no-referrer")
+    meta(name="format-detection", content="telephone=no")
+
+    link(rel="index", href=meta.canonical)
+    link(rel="canonical", href=meta.canonical)
+
+    meta(property="og:type", content="article")
+    meta(name="twitter:card", content="summary")
+    meta(name="twitter:dnt", content="on")
+    meta(property="og:url", content=meta.canonical)
+    meta(property="og:title", content=meta.title)
+    meta(property="og:description", content=meta.description)
+    meta(property="og:image", content=meta.canonical + "favicon.png")
+    meta(property="og:site_name", content="")
+    meta(name="twitter:site", content=meta.sns_author)
+    meta(name="twitter:creator", content=meta.sns_author)
+
+    meta(name="geo.region", content="JP")
+    meta(name="geo.placename", content="Sakurai city, Nara pref., Japan")
+    meta(name="ICBM", content="34.5136853, 135.8463216")
+    meta(name="geo.position", content="34.5136853;135.8463216")
+
+    // resource
+    link(rel="icon", href="./favicon.ico")
+    link(rel="icon", href="./favicon.png")
+    link(rel="mask-icon", href="./favicon.svg", color="#ffffff")
+    link(rel="apple-touch-icon", href="./favicon.png")
+
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Train+One&display=swap&text=%E5%90%8D%E5%AD%97%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B2%E3%83%BC%E3%83%A0", rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@500&display=swap&text=0123456789", rel="stylesheet")
+
+    script(src="./dist/index.cjs.js?v=" + locals.data.version)
+    link(rel="stylesheet", href="./dist/index.css?v=" + locals.data.version)
+
+
+  // ** body **
+  body
+    // Google Tag Manager (noscript)
+    noscript
+      iframe(src="https://www.googletagmanager.com/ns.html?id=GTM-TTP9DHMZ", height="0", width="0", style="display:none;visibility:hidden")
+
+    // mask
+    aside#mask(data-state="hidden")
+      div
+        - for(var i = 0; i < 369; i ++)
+          p
+
+    // content
+    main(data-state="pause")
+
+      // global header
+      section#header
+        h1
+          mark #{meta.title}
+          small
+            span
+              i &nbsp;
+              em エイプリルフール記事に対抗するエイプリルフール企画 (大遅刻)
+
+        ul
+          li
+            button#start 開始／再開
+          li
+            button#stop 一時停止
+          li
+            button#init 初期化
+
+      // game area
+      section#table
+        div
+          // ライフゲーム
+          ol
+          // ログ
+          dl
+
+        div
+          label
+            // 世代カウント
+            em
+              span 第
+              b#generation 1
+              span 世代
+
+            // 人口カウント
+            em
+              span 総人口
+              b#population 0
+              span 人
+
+          // インデックス
+          ul
+
+      // information
+      section#info
+        header このページは何？
+
+        article
+          div
+            span 名字でライフゲームをしてもらいます。
+            br
+            span 「お前は何を言っているんだ」と思った人。
+            br
+            span うん、あなたは正しい。
+            br
+
+          div
+            span 「そもそもライフゲームって何なの？」という方は
+            a(target="_blank", rel="noopener noreferrer external", href="https://ja.wikipedia.org/wiki/%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B2%E3%83%BC%E3%83%A0")
+              em Wikipedia
+              img(src="static/external.svg", alt="icon")
+            span など参照してみてください。
+            br
+
+          div
+            span 朝日新聞デジタルから
+            ruby
+              | 4月1日午前
+              rp (
+              rt エイプリルフール
+              rp )
+            span に面白い記事が出たので、検証実験に作ってみました。
+            br
+            a(target="_blank", rel="noopener noreferrer external", href="https://www.asahi.com/articles/ASS3Y3HZ2S3YULFA00BM.html")
+              em 別姓導入しなければ500年後みんな「佐藤さん」に…識者が試算
+              img(src="static/external.svg", alt="icon")
+            br
+
+          div
+            span 「全員佐藤さんになるとかホンマか？？」
+            br
+            span とツッコミを入れるのは簡単ですけども、どうせなら面白い返し方をしたいなと思いまして。
+            br
+
+          p 右上メニュー
+
+          div
+            span 最初に「初期化」を
+            ruby
+              | 押下
+              rp (
+              rt おうか
+              rp )
+            small (ボタンなどを押すこと)
+            span してください。
+            br
+
+          div
+            span ●ゲームを開始するには「開始／再開」を押下してください。
+            br
+            span ●ゲームを一時停止するには「一時停止」を押下してください。
+            br
+            span ●一時停止しているゲームを再開するには「開始／再開」を押下してください。
+            br
+
+          div
+            span ゲームが終了すると自動的に勝者が確定して一時停止状態になります。
+            br
+            span 一時停止状態で「初期化」を押下すると、ランダムに名字を再配置しますので完了したら「開始／再開」を押下してください。
+            br
+
+          div
+            span ページの読み込み・リロードでは自動的な初期化処理を実行しませんのでご注意ください。
+            br
+            span ブラウザへの過剰な処理負荷を軽減するためです。
+            br
+
+          p データのカスタマイズ
+
+          div
+            span 初期化するデータを変更したい場合、下記のテキストエリアを編集してから「初期化」を押下してください。
+            br
+            span データ書式は「名字・タブ文字・人数・改行文字」です。
+            br
+            span 改行文字はCRLF・CRのみ・LFのみの全てに対応しています。
+            br
+
+          div
+            span デフォルトデータは
+            a(target="_blank", rel="noopener noreferrer external", href="https://myoji-yurai.net/prefectureRanking.htm?prefecture=%E5%85%A8%E5%9B%BD&page=0")
+              em 全国名字ランキング
+              img(src="static/external.svg", alt="icon")
+            small (出典: 名字由来net, 2023年度)
+            span を加工しています。
+            br
+            a(target="_blank", rel="noopener noreferrer external", href="https://www.stat.go.jp/data/jinsui/new.html")
+              em 日本の人口の確定値
+              img(src="static/external.svg", alt="icon")
+            span が1億2435万2千人
+            small (出典: 総務省統計局, 2023年10月)
+            span ですので、これを10,000人あたりに換算しました。
+            br
+            span 端数切り上げ、データは上位5000位まで。
+            br
+
+          p 内部的な仕組みなど
+
+          div
+            span 1回の処理を「世代」とします。
+            br
+
+          div
+            span 1世代において全てのマス目は、必ず別のランダムなマス目と結婚しようとします。
+            br
+            span マス目が奇数しか残っていない場合は結婚できない者が1つだけ現れますが、独身の方には孤独死してもらいます。
+            br
+            span 悲しい話。
+            br
+
+          div
+            span どちらの名字になるかは完全にランダムです。
+            br
+            span 結婚して、片方が改姓します。
+            br
+
+          div
+            span 結婚すると、一定の確率で子供が産まれます。
+            br
+            span この時に6.3%の確率で両親と同じ名字を持つマス目が誕生するようにしました。
+            br
+
+          div
+            span 産まれる者があれば死ぬ者もいます。
+            br
+            span 世代が来るごとにマス目は12.9%の確率で死亡します。
+            br
+
+          div
+            span 出生率と死亡率
+            small (共に1,000人あたり)
+            span は
+            a(target="_blank", rel="noopener noreferrer external", href="https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/geppo/nengai22/dl/gaikyouR4.pdf")
+              em 人口動態概況
+              img(src="static/external.svg", alt="icon")
+            small (出典: 厚生労働省, 2022年)
+            span によります。
+            br
+
+          div
+            span 以上が1つの世代としての処理。
+            br
+            span 世代の数値を1つ増やして、最初の処理に戻って繰り返しです。
+            br
+
+          div
+            span なるほど、これが
+            ruby
+              | 多死社会
+              rp (
+              rt たししゃかい
+              rp )
+            span 。
+            br
+            span 確かに
+            ruby
+              | 生命の
+              rp (
+              rt ライフ
+              rp )
+            ruby
+              | 遊び
+              rp (
+              rt ゲーム
+              rp )
+            span ですわね。
+            br
+            span かなり趣味の悪いゲームですけど。
+            br
+
+        header 総括
+
+        article
+          div
+            span 何回かやってみましたが、現状1位の佐藤さんは意外と残りません。
+            br
+            span ランダムだから仕方ないですね。
+            br
+            small
+              span (延々とボゴソートをやっているようなものなので、どう
+              ruby
+                | 並び替え
+                rp (
+                rt ソートさせ
+                rp )
+              span られるかは完全に不確定です)
+            br
+
+          div
+            span 最序盤は猛烈な淘汰の応酬。
+            br
+            span 10未満の数家がレースの先頭集団に立ってからが中盤で、出生率よりも死亡率の方が高いことにより、緩やかに人口が減少しつつも大局的には各家が拮抗状態に。
+            br
+            span 人口が減ってくると1世代ごとの結婚成約数も当然連動して減りますので、やがては家名の種類も漸減傾向。
+            br
+            span 終盤はデッドヒートで「母数が減るから『出生率で減る数』と『死亡率で減る数』とが漸近してくる」という、現役年齢を考慮しないからこそ起きる確率論のマジックを経てからの最後の1家が決定しがちでした。
+            br
+
+          div
+            span 仮に1つの家名が一定期間寡占状態にあったとしても、まあまあな確率で没落していくのは趣深い。
+            br
+            span 記事にあったシミュレーショングラフは「
+            br
+            ruby
+              | ノ
+              rp (
+              rt の
+              rp )
+            span 」の字を描く曲線ですが、この方法に限って言うと、「
+            ruby
+              | ∫
+              rp (
+              rt インテグラル
+              rp )
+            span 」記号のような動きを見せていたというのが結論でした。
+            br
+
+          div
+            span 手法が狂ってる暴論なんですが、記事の資料にも「佐藤姓占有率は、毎年去年の1.0083倍ずつというスピードで増加していくと仮定する」とかすごいこと書いてますからね。
+            br
+            span 「そんな一様に増加し続けることなんかあるかい！」
+            br
+            span てな感じで、エイプリルフールネタにはエイプリルフールネタとして大暴論を投げ返しました。
+            br
+            ruby
+              | 四月
+              rp (
+              rt エイプリル
+              rp )
+            span な
+            ruby
+              | バカ
+              rp (
+              rt フール
+              rp )
+            span 企画をやるからには本気でやった方が面白いので私はこういう冗談は大好き侍。冗談ですよね？
+            br
+
+          div
+            span ついでにデータ取得の方法をメモとして。
+            br
+            span 上記、名字由来net様のページを開いた状態でDevToolsを起動。
+            br
+            span コンソールで次のコードをコピペして実行してください。
+            br
+            code (d=&gt;{let t=[];d.querySelectorAll(".post table.simple tbody tr").forEach(c=&gt;{t.push(c.querySelector("td a").innerHTML+"&#x5c;t"+Math.ceil((c.querySelector("td:last-of-type").innerHTML.replace(/[^0-9]/g,"")-0)/12435.2))});console.log(t.join("&#x5c;r&#x5c;n"))})(document)
+            span 出力結果をフォームにコピペして「初期化」を押下するだけです。
+            br
+            span 書式に則っていない場合
+            small (余計な改行文字が入っているとか)
+            span はエラーになりますので要注意。
+            br
+
+          p 気が向いたら
+
+          div
+            span DOM操作をしてるので結構処理が重いです。
+            br
+            span 途中で落ちることもあります。
+            br
+            span 世代が移る時に少し黒くチラつくのは敢えて追加した処理で、それくらいブラウザには負荷が掛かっています。
+            br
+            span 処理の軽量化のためにcanvas版としてバーションアップをするかもしれません。
+            br
+
+          div
+            span それとある程度の性能があるパソコンでの動作しか考えてないページなので、スマホ対応はしていません。
+            br
+            span 一応ブレークポイントは768pxで打つ予定ですが、予定は未定。
+            br
+
+          div
+            span それもこれも、気が向いたらの話。
+            br
+            span 以上、エイプリルフールに大遅刻した内容でした。
+            br
+            span おしまい。
+            br
+
+      // revision list
+      section#revision
+        header 更新履歴
+        ul
+          li version 1.0.2: 内部システムの調整
+          li version 1.0.1: 内部システムの調整
+          li version 1.0.0: DOM-PC版を公開
+
+      // data
+      section#data
+        header データ
+
+        label
+          legend 以下の白枠に出力したテキストデータをペーストしてください
+          include _data.pug
+
+      // footer
+      section#footer
+        h2
+          span &copy;2024
+          a(target="_blank", rel="noopener noreferrer external", href="https://misskey.io/@nei_haduki")
+            em 葉月 寧
+            img(src="static/external.svg", alt="icon")
+        p version #{locals.data.version}

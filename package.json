@@ -4,18 +4,22 @@
   "description": "privateモードでリポジトリを作成",
   "main": "main.js",
   "devDependencies": {
+    "@types/gtag.js": "^0.0.19",
     "csso-cli": "^4.0.2",
     "esbuild": "^0.20.2",
-    "npm-run-all": "^4.1.5",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.12",
+    "html-minifier": "^4.0.0",
+    "pug": "^3.0.2",
+    "sass": "^1.75.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build:ts": "run-p build:ts-*",
-    "build:ts-build": "ts-node build.ts",
-    "build:ts-types": "tsc --declaration --emitDeclarationOnly",
-    "build:css": "csso ./src/index.css --output ./dist/index.css --source-map file"
+    "html": "node build-html.js -- --html",
+    "php": "node build-html.js -- --php",
+    "js": "tsc --declaration --emitDeclarationOnly | ts-node build-js.ts",
+    "css": "md dist | sass ./src/index.scss ./src/index.css | csso ./src/index.css --output ./dist/index.css --source-map ./dist/index.css.map"
   },
   "keywords": [],
   "author": "",
