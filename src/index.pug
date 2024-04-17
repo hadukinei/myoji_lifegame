@@ -1,7 +1,9 @@
 doctype html
 html(lang="ja")
 
-  // ** head **
+  // **
+  // * head *
+  // **
 
   head
     // Google tag (gtag.js)
@@ -63,8 +65,10 @@ html(lang="ja")
     script(src="./dist/index.cjs.js?v=" + locals.data.version)
     link(rel="stylesheet", href="./dist/index.css?v=" + locals.data.version)
 
+  // **
+  // * body *
+  // **
 
-  // ** body **
   body
     // Google Tag Manager (noscript)
     noscript
@@ -81,6 +85,7 @@ html(lang="ja")
 
       // global header
       section#header
+        // logo area
         h1
           mark #{meta.title}
           small
@@ -88,6 +93,7 @@ html(lang="ja")
               i &nbsp;
               em エイプリルフール記事に対抗するエイプリルフール企画 (大遅刻)
 
+        // console area
         ul
           li
             button#start 開始／再開
@@ -99,26 +105,26 @@ html(lang="ja")
       // game area
       section#table
         div
-          // ライフゲーム
+          // life game
           ol
-          // ログ
+          // logger
           dl
 
         div
           label
-            // 世代カウント
+            // count generations
             em
               span 第
               b#generation 1
               span 世代
 
-            // 人口カウント
+            // count populations
             em
               span 総人口
               b#population 0
               span 人
 
-          // インデックス
+          // family indexes
           ul
 
       // information
