@@ -1,9 +1,10 @@
 import {LogLevel, build} from 'esbuild';
 
-const entryFile = ['./src/index.ts'];
+const entryFile = ['./src/index.ts', './src/a2.ts'];
 
 const shared = {
   entryPoints: entryFile,
+  outdir: 'dist',
   target: ['ES6'],
   bundle: true,
   minify: true,
@@ -14,11 +15,13 @@ const shared = {
 build({
   ...shared,
   format: 'esm',
-  outfile: './dist/index.esm.js',
+  //outfile: './dist/index.esm.js',
 })
 
+/*
 build({
   ...shared,
   format: 'cjs',
-  outfile: './dist/index.cjs.js',
+  //outfile: './dist/index.cjs.js',
 })
+*/

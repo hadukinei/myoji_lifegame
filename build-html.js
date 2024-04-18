@@ -1,13 +1,9 @@
 /**
- * set variable
- */
-const VERSION = '1.0.2-20240418_0021';
-
-/**
  * set mode
  */
 const isHtml = !!process.argv.filter(args => args === '--html').length;
 const isPhp = !!process.argv.filter(args => args === '--php').length;
+
 
 /**
  * load package
@@ -16,6 +12,10 @@ const pug = require('pug');
 const htmlMinifier = require('html-minifier').minify;
 const fsExtra = require('fs-extra');
 const {glob} = require('glob');
+
+// call version from dotenv
+const dotenv = require('dotenv');
+const VERSION = dotenv.config().parsed.VERSION;
 
 
 /**

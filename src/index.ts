@@ -1,3 +1,6 @@
+//import a1 from './a1';
+//a1();
+
 (d => {
   /** general initialization */
   let load = () => {

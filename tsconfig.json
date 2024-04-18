@@ -3,10 +3,9 @@
     "target": "ES6",
     "module": "CommonJS",
     "declaration": true,
-    "declarationDir": "./dist",
     "strict": true,
-    "lib": ["ES6", "dom"]
+    "lib": ["ES6", "dom"],
   },
-  "include": ["./src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules", "./*.ts"],
 }

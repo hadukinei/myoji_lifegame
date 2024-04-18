@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/a2.ts"],
+  "sourcesContent": ["export default () => {\r\n  console.log('fire a2')\r\n};"],
+  "mappings": "AAAA,IAAOA,EAAQ,IAAM,CACnB,QAAQ,IAAI,SAAS,CACvB",
+  "names": ["a2_default"]
+}

@@ -5,7 +5,8 @@
   "main": "main.js",
   "devDependencies": {
     "@types/gtag.js": "^0.0.19",
-    "csso-cli": "^4.0.2",
+    "csso": "^5.0.5",
+    "dotenv": "^16.4.5",
     "esbuild": "^0.20.2",
     "fs-extra": "^11.2.0",
     "glob": "^10.3.12",
@@ -19,7 +20,7 @@
     "html": "node build-html.js -- --html",
     "php": "node build-html.js -- --php",
     "js": "tsc --declaration --emitDeclarationOnly | ts-node build-js.ts",
-    "css": "md dist | sass ./src/index.scss ./src/index.css | csso ./src/index.css --output ./dist/index.css --source-map ./dist/index.css.map"
+    "css": "node build-css.js"
   },
   "keywords": [],
   "author": "",
