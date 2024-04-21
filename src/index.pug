@@ -16,18 +16,40 @@ html(lang="ja")
     // JSON-LD
     // https://developers.google.com/search/docs/appearance/structured-data/breadcrumb?hl=ja
     script(type="application/ld+json").
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "名字ライフゲーム",
-            "item": "https://hadukinei.github.io/myoji_lifegame"
-          }
-        ]
-      }
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Gothicum",
+              "item": "https://www.gothicum.xyz"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "名字ライフゲーム",
+              "item": "https://hadukinei.github.io/myoji_lifegame"
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Gothicum blog",
+              "item": "https://blog.gothicum.xyz"
+            }
+          ]
+        }
+      ]
 
     // meta data
     -
