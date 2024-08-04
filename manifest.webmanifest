@@ -1,0 +1,23 @@
+{
+  "name": "名字同士にライフゲームをしてもらいました。",
+  "short_name": "名字ライフゲーム",
+  "start_url": "https://hadukinei.github.io/myoji_lifegame/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "color_theme": "#ffffff",
+  "icons": [
+    {
+      "src": "favicon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ],
+  "scope": "/"
+}

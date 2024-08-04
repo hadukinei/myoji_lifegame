@@ -1,7 +1,7 @@
 {
   "name": "myoji_lifegame",
-  "version": "1.0.0",
-  "description": "privateモードでリポジトリを作成",
+  "version": "1.0.3-20240804_0935",
+  "description": "名字同士にライフゲームをしてもらいました。",
   "main": "main.js",
   "devDependencies": {
     "@types/gtag.js": "^0.0.19",

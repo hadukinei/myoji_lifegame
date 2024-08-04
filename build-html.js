@@ -14,8 +14,8 @@ const fsExtra = require('fs-extra');
 const {glob} = require('glob');
 
 // call version from dotenv
-const dotenv = require('dotenv');
-const VERSION = dotenv.config().parsed.VERSION;
+//const dotenv = require('dotenv');
+const VERSION = process.env.npm_package_version ?? ''; // dotenv.config().parsed.VERSION;
 
 
 /**
