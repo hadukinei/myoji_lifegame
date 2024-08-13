@@ -9,9 +9,8 @@ const isPhp = !!process.argv.filter(args => args === '--php').length;
  * load package
  */
 const pug = require('pug');
-const htmlMinifier = require('html-minifier').minify;
 const fsExtra = require('fs-extra');
-const {glob} = require('glob');
+const { glob } = require('glob');
 
 // call version from dotenv
 //const dotenv = require('dotenv');
@@ -43,10 +42,12 @@ const pugOptions = {
    * publish files
    */
   const outputFile = (filename, htmlText) => {
+    /*
     htmlText = htmlMinifier(htmlText, {
       ignoreCustomFragments: [/<%[\s\S]*?%>/, /<\?[\s\S]*?\?>/, /<\?php[\s\S]?\?>/],
       removeComments: true,
     });
+    */
 
     fsExtra.outputFile(filename, htmlText)
     .then(() => {console.log('Start: ' + filename)})
