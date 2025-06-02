@@ -1,6 +1,6 @@
 {
   "name": "myoji_lifegame",
-  "version": "1.2.0-2025.0601.2335",
+  "version": "1.2.1-2025.0601.2335",
   "description": "名字同士にライフゲームをしてもらいました。",
   "main": "main.js",
   "devDependencies": {
