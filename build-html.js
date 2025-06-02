@@ -8,9 +8,9 @@ const isPhp = !!process.argv.filter(args => args === '--php').length;
 /**
  * load package
  */
-const pug = require('pug');
-const fsExtra = require('fs-extra');
-const { glob } = require('glob');
+import pug from 'pug';
+import fs from 'fs-extra';
+import { glob } from 'glob';
 
 // call version from dotenv
 //const dotenv = require('dotenv');
@@ -49,7 +49,7 @@ const pugOptions = {
     });
     */
 
-    fsExtra.outputFile(filename, htmlText)
+    fs.outputFile(filename, htmlText)
     .then(() => {console.log('Start: ' + filename)})
     .catch(() => {console.log('ERROR!!' + filename)})
     .then(() => {console.log('Success: ' + filename)})

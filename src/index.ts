@@ -144,8 +144,16 @@
         nodes.push(node as HTMLElement);
       });
 
-      let children = [];
-      let deadmen = [];
+      interface iChildren {
+        id: string,
+        color: string,
+      }
+      interface iDeadmen {
+        id: string,
+        elm: HTMLElement,
+      }
+      let children: Array<iChildren> = [];
+      let deadmen: Array<iDeadmen> = [];
 
       for(let i = 0, l = nodes.length; i < l; i += 2){
         // decide family-name by random
@@ -367,12 +375,18 @@
 
 
       // set list-data
-      let node_data = [];
+      interface iNodeData{
+        id: number,
+        name: number,
+        value: number,
+      }
+      let node_data: Array<iNodeData> = [];
+
       for(let i = 0, l = def_data.length; i < l; i ++){
         for(let j = 0, m = parseInt(def_data[i][1] + ''); j < m; j ++){
           node_data.push({
-            id: def_data[i][2],
-            name: def_data[i][0],
+            id: parseInt(def_data[i][2].toString()),
+            name: parseInt(def_data[i][0].toString()),
             value: ~~(Math.random() * 1000000000) // sort-order
           });
         }

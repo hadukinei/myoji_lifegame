@@ -1,27 +1,31 @@
 {
   "name": "myoji_lifegame",
-  "version": "1.1.0-2024.0813.1547",
+  "version": "1.2.0-2025.0601.2335",
   "description": "名字同士にライフゲームをしてもらいました。",
   "main": "main.js",
   "devDependencies": {
     "@types/gtag.js": "^0.0.19",
+    "@types/node": "^22.15.29",
     "csso": "^5.0.5",
-    "dotenv": "^16.4.5",
-    "esbuild": "^0.23.0",
-    "fs-extra": "^11.2.0",
-    "glob": "^11.0.0",
+    "dotenv": "^16.5.0",
+    "fs-extra": "^11.3.0",
+    "glob": "^11.0.2",
     "pug": "^3.0.3",
-    "sass": "^1.77.8",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.5.4"
+    "sass": "^1.89.1",
+    "terser": "^5.40.0",
+    "typescript": "^5.8.3"
   },
   "scripts": {
     "html": "node build-html.js -- --html",
     "php": "node build-html.js -- --php",
-    "js": "tsc --declaration --emitDeclarationOnly | ts-node build-js.ts",
+    "js": "node build-js.js",
     "css": "node build-css.js"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "volta": {
+    "node": "24.1.0"
+  }
 }
